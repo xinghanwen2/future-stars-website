@@ -1,0 +1,334 @@
+/* Future Stars Baseball Club - Phase 1 Static Website
+   Beginner-friendly CSS for GitHub Pages.
+   Replace placeholder text/photos later when the team provides final content.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --navy: #0f172a;
+  --blue: #2563eb;
+  --light-blue: #eff6ff;
+  --gray: #f3f4f6;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--blue);
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 8%;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.logo span {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: flex-end;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 15px;
+}
+
+nav a:hover {
+  color: var(--blue);
+}
+
+.hero {
+  padding: 90px 8%;
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 60%);
+}
+
+.hero .tagline,
+.page-hero .tagline {
+  color: var(--blue);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 14px;
+}
+
+.hero h1,
+.page-hero h1 {
+  max-width: 850px;
+  font-size: 46px;
+  line-height: 1.15;
+  margin: 10px 0 18px;
+  color: var(--navy);
+}
+
+.hero p,
+.page-hero p {
+  max-width: 760px;
+  font-size: 18px;
+  color: #374151;
+}
+
+.hero-buttons {
+  margin-top: 28px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: var(--blue);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.button.secondary {
+  background: var(--navy);
+}
+
+.button.outline {
+  color: var(--blue);
+  background: var(--white);
+  border: 1px solid var(--blue);
+}
+
+.section {
+  padding: 64px 8%;
+}
+
+.section.light {
+  background: #f9fafb;
+}
+
+.section.narrow {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.page-hero {
+  padding: 72px 8%;
+  background: var(--gray);
+}
+
+h2 {
+  color: var(--navy);
+  font-size: 30px;
+  margin-top: 0;
+}
+
+h3 {
+  color: var(--navy);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.card {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--white);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.placeholder-box {
+  border: 2px dashed #cbd5e1;
+  background: #f8fafc;
+  color: var(--muted);
+  border-radius: 14px;
+  padding: 28px;
+  text-align: center;
+  margin: 22px 0;
+}
+
+.notice {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  padding: 18px;
+  border-radius: 12px;
+  color: #7c2d12;
+}
+
+.success {
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  padding: 18px;
+  border-radius: 12px;
+  color: #064e3b;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+}
+
+.steps li {
+  counter-increment: step;
+  margin: 16px 0;
+  padding: 18px 18px 18px 58px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  position: relative;
+  background: var(--white);
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--white);
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background: var(--light-blue);
+  color: var(--navy);
+}
+
+.form-preview label {
+  display: block;
+  margin-top: 14px;
+  font-weight: 700;
+}
+
+.form-preview input,
+.form-preview textarea,
+.form-preview select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 6px;
+  font: inherit;
+}
+
+.form-preview button {
+  margin-top: 18px;
+  border: none;
+  cursor: not-allowed;
+}
+
+footer {
+  padding: 34px 8%;
+  background: var(--navy);
+  color: var(--white);
+  text-align: center;
+}
+
+footer a {
+  color: #bfdbfe;
+}
+
+.small-text {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--light-blue);
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+@media (max-width: 850px) {
+  .site-header {
+    display: block;
+  }
+
+  nav {
+    justify-content: flex-start;
+    margin-top: 14px;
+  }
+
+  .hero h1,
+  .page-hero h1 {
+    font-size: 34px;
+  }
+
+  .cards,
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
