@@ -3,9 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Portfolio | Future Stars Baseball Club</title>
+  <title>AI Analysis | Future Stars Baseball Club</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .ai-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .chat-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(8, 39, 92, 0.06);
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: var(--navy);
+      color: white;
+      padding: 18px 22px;
+    }
+
+    .chat-header h2 {
+      color: white;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .chat-header p {
+      margin: 6px 0 0;
+      color: #dbeafe;
+    }
+
+    .chat-messages {
+      height: 430px;
+      overflow-y: auto;
+      padding: 22px;
+      background: #f8fafc;
+    }
+
+    .message {
+      max-width: 85%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .message.ai {
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .message.user {
+      margin-left: auto;
+      background: #eaf2ff;
+      border: 1px solid #cfe0ff;
+    }
+
+    .chat-input-area {
+      display: flex;
+      gap: 10px;
+      padding: 16px;
+      border-top: 1px solid var(--line);
+      background: white;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font: inherit;
+    }
+
+    .upload-panel {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+    }
+
+    .upload-panel label {
+      display: block;
+      font-weight: 800;
+      color: var(--navy);
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+
+    .upload-panel input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f8fafc;
+    }
+
+    .report-box {
+      white-space: pre-wrap;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 16px;
+      display: none;
+    }
+
+    .ai-note {
+      background: #fff8e8;
+      border: 1px solid #f8d37c;
+      color: #7c5800;
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 960px) {
+      .ai-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .chat-messages {
+        height: 360px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
 <header class="site-header">
@@ -26,7 +156,7 @@
       <a href="method.html">Method</a>
       <a href="case-studies.html">Case Studies</a>
       <a href="events.html">Events</a>
-      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="portfolio.html" class="active">AI Analysis</a>
       <a href="register.html">Register</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -35,423 +165,141 @@
 
 <section class="page-hero">
   <div class="container">
-    <span class="eyebrow">Project Portfolio</span>
-    <h1>Future Stars Baseball Club Project Portfolio</h1>
+    <span class="eyebrow">AI Analysis</span>
+    <h1>AI-Powered Swing Analysis</h1>
     <p class="lead">
-      Future Stars Baseball Club is a youth baseball development project that combines
-      video analysis, data tracking, individualized feedback, training drills, and retesting
-      to help young players better understand and improve their hitting mechanics.
+      Upload one side-view hitting video and one back-view hitting video. The AI assistant will help explain
+      swing mechanics, identify improvement areas, and generate a simple player report.
     </p>
+
+    <div class="button-row">
+      <a class="btn btn-primary" href="#ai-chat">Start AI Analysis</a>
+      <a class="btn btn-secondary" href="case-studies.html">View Case Studies</a>
+    </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="container grid-2">
-    <div>
-      <p class="kicker">Project Overview</p>
-      <h2>More than a website or one-time clinic</h2>
-      <p>
-        Future Stars Baseball Club is designed as a repeatable player development system.
-        The goal is not simply to record swings or post videos. The goal is to help players
-        and parents understand what is happening in the swing, identify clear improvement
-        areas, apply simple drills, and track progress over time.
-      </p>
-      <p>
-        The project connects baseball coaching, structured video review, data organization,
-        player reports, parent communication, and public anonymous case studies into one
-        clear development process.
-      </p>
+<section class="section" id="ai-chat">
+  <div class="container ai-layout">
+
+    <div class="chat-box">
+      <div class="chat-header">
+        <h2>Future Stars AI Chat</h2>
+        <p>Ask questions about hitting mechanics, video analysis, drills, and player reports.</p>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message ai">
+          Hi! I am the Future Stars AI assistant. I can help explain swing mechanics, suggest what to look for in a video,
+          and prepare a simple hitting analysis report.
+        </div>
+
+        <div class="message ai">
+          To generate a report, click <strong>Start Video Report</strong>. I will ask you to upload two videos:
+          one side-view video and one back-view video.
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <input id="chatInput" type="text" placeholder="Ask about swing mechanics, drills, or reports..." />
+        <button class="btn btn-secondary" onclick="sendChatMessage()">Send</button>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>Project Mission</h3>
-      <p>
-        Help young baseball players ages 6–18 improve their hitting mechanics through
-        clear visual feedback, simple development goals, and a structured before/after
-        improvement process.
-      </p>
-      <ul class="checklist">
-        <li>Make swing issues easier for players to understand</li>
-        <li>Give parents clear and practical feedback</li>
-        <li>Use video and data to support coaching decisions</li>
-        <li>Create a repeatable process for future players</li>
-      </ul>
+    <div>
+      <div class="card">
+        <h3>Generate AI Swing Report</h3>
+        <p>
+          Click the button below to begin. The AI assistant will request two videos and then create a downloadable report.
+        </p>
+
+        <button class="btn btn-primary" onclick="requestVideos()">Start Video Report</button>
+
+        <div class="upload-panel" id="uploadPanel" style="display: none;">
+          <h3>Upload Required Videos</h3>
+
+          <label for="sideVideo">1. Side-View Video</label>
+          <input type="file" id="sideVideo" accept="video/*" />
+
+          <label for="backVideo">2. Back-View Video</label>
+          <input type="file" id="backVideo" accept="video/*" />
+
+          <div class="button-row">
+            <button class="btn btn-primary" onclick="generateDemoReport()">Generate Report</button>
+            <button class="btn btn-outline" onclick="clearReport()">Clear</button>
+          </div>
+        </div>
+
+        <div class="report-box" id="reportBox"></div>
+
+        <div class="button-row" id="downloadArea" style="display: none;">
+          <button class="btn btn-secondary" onclick="downloadReport()">Download Report</button>
+        </div>
+      </div>
+
+      <div class="ai-note">
+        <strong>Developer note:</strong> This page is currently a front-end prototype. A real AI report system will need
+        a backend server, secure video upload storage, and an AI model connection. Do not store private player videos
+        directly on GitHub.
+      </div>
     </div>
+
   </div>
 </section>
 
 <section class="section section-alt">
   <div class="container">
-    <p class="kicker">Program Workflow</p>
-    <h2>The Future Stars Development Loop</h2>
-    <p class="section-intro">
-      Each player should move through the same basic process: registration, consent,
-      video capture, analysis, report, training plan, retest, and public case study only
-      if approved.
-    </p>
+    <p class="kicker">How It Works</p>
+    <h2>AI Report Workflow</h2>
 
     <div class="grid-4">
       <div class="card">
-        <h3>1. Register</h3>
-        <p>Parent registration collects basic player information, goals, and contact details.</p>
+        <h3>1. Upload Side View</h3>
+        <p>The side view helps review stance, load, stride, contact posture, and finish.</p>
       </div>
 
       <div class="card">
-        <h3>2. Consent</h3>
-        <p>Parent permission controls whether videos, photos, or case studies can be used.</p>
+        <h3>2. Upload Back View</h3>
+        <p>The back view helps review bat path, direction, timing, and plate coverage.</p>
       </div>
 
       <div class="card">
-        <h3>3. Record</h3>
-        <p>Players are recorded from standard angles during tee work and front toss.</p>
+        <h3>3. AI Review</h3>
+        <p>The AI summarizes strengths, improvement areas, and possible training focus.</p>
       </div>
 
       <div class="card">
-        <h3>4. Analyze</h3>
-        <p>The swing is reviewed for balance, timing, bat path, contact point, and repeatability.</p>
-      </div>
-
-      <div class="card">
-        <h3>5. Report</h3>
-        <p>A simple player report explains strengths, improvement areas, and next steps.</p>
-      </div>
-
-      <div class="card">
-        <h3>6. Train</h3>
-        <p>The player receives 2–3 targeted drills based on the main swing issue.</p>
-      </div>
-
-      <div class="card">
-        <h3>7. Retest</h3>
-        <p>A follow-up session compares baseline and retest clips using the same method.</p>
-      </div>
-
-      <div class="card">
-        <h3>8. Case Study</h3>
-        <p>Approved cases may become anonymous public examples on the website.</p>
+        <h3>4. Download Report</h3>
+        <p>The user can download a simple report and save it for follow-up training.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="section">
-  <div class="container">
-    <p class="kicker">By the Numbers</p>
-    <h2>Project Dashboard</h2>
-    <p class="section-intro">
-      These numbers can be updated as the project grows. For now, they are placeholders
-      so the page has a clear structure.
-    </p>
-
-    <div class="grid-4">
-      <div class="metric">
-        <div class="num">Coming Soon</div>
-        <div class="label">Players served</div>
-      </div>
-
-      <div class="metric">
-        <div class="num">Coming Soon</div>
-        <div class="label">Baseline videos collected</div>
-      </div>
-
-      <div class="metric">
-        <div class="num">Coming Soon</div>
-        <div class="label">Reports completed</div>
-      </div>
-
-      <div class="metric">
-        <div class="num">Coming Soon</div>
-        <div class="label">Retest sessions</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-alt">
   <div class="container grid-2">
     <div>
-      <p class="kicker">Development Method</p>
-      <h2>How Future Stars evaluates players</h2>
-      <p>
-        Future Stars uses a simple, repeatable analysis method so each player can be reviewed
-        in a consistent way. The method focuses on the movement patterns that young players
-        can understand and improve.
-      </p>
+      <p class="kicker">Report Sections</p>
+      <h2>What the AI report will include</h2>
 
       <ul class="checklist">
-        <li>Two-angle video recording: side view and back/catcher view</li>
-        <li>Tee work and front toss evaluation</li>
-        <li>Review of balance, timing, bat path, contact point, and finish</li>
-        <li>Simple scorecards for key development areas</li>
-        <li>2–3 drills connected to the player’s main issue</li>
-        <li>Retest plan to compare progress over time</li>
+        <li>Player video summary</li>
+        <li>Side-view observations</li>
+        <li>Back-view observations</li>
+        <li>Main strengths</li>
+        <li>Main improvement areas</li>
+        <li>Suggested drills</li>
+        <li>7–10 day practice plan</li>
+        <li>Retest recommendation</li>
       </ul>
     </div>
 
     <div class="card">
-      <h3>Why this method matters</h3>
+      <h3>Privacy Reminder</h3>
       <p>
-        Many young players hear general advice like “stay balanced” or “keep your hands back,”
-        but they do not always know what that means in their own swing. Video analysis helps
-        make the issue visible, and a short drill plan turns the feedback into something the
-        player can practice.
+        Full raw videos and private reports should be stored in private Google Drive folders.
+        Public website pages should only show approved clips, screenshots, summaries, and redacted reports.
       </p>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <p class="kicker">Sample Case Evidence</p>
-    <h2>Public Case Study Example</h2>
-    <p class="section-intro">
-      Public case studies should be short, anonymous, and focused on the improvement process.
-      Full raw videos and complete private reports should stay in Google Drive.
-    </p>
-
-    <div class="grid-2">
-      <div class="card">
-        <span class="case-badge">Sample Public Case</span>
-        <h3>Player A, Age Unknown</h3>
-        <p><strong>Session Type:</strong> Baseline hitting analysis</p>
-        <p><strong>Views Collected:</strong> Side view and back view</p>
-        <p><strong>Main Strengths:</strong> Complete swing, contact ability, repeatable general pattern, and strong training upside.</p>
-        <p><strong>Main Improvement Areas:</strong> Back-hip load, front-side block, hip-led rotation, and head stability.</p>
-        <p><strong>Training Focus:</strong> Pause Load Drill, Stride and Hold Drill, and Hit and Freeze Drill.</p>
-        <a class="btn btn-outline" href="case-studies.html">View Full Case Study</a>
-      </div>
-
-      <div class="card">
-        <h3>Case Study Structure</h3>
-        <ul class="checklist">
-          <li>Anonymous player profile</li>
-          <li>Baseline problem</li>
-          <li>Selected video clips or key frames</li>
-          <li>Analysis summary</li>
-          <li>Drill plan</li>
-          <li>Retest result, when available</li>
-          <li>Parent feedback, if approved</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-alt">
-  <div class="container">
-    <p class="kicker">Reports & Documentation</p>
-    <h2>Project Outputs</h2>
-    <p class="section-intro">
-      Future Stars is designed to create useful project outputs, not just informal notes.
-      These materials help players, parents, coaches, and future reviewers understand the work.
-    </p>
-
-    <div class="grid-3">
-      <div class="card">
-        <h3>Parent-Friendly Report</h3>
-        <p>
-          A clear version for families explaining what the player did well, what needs to improve,
-          and what to practice next.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Coach-Style Report</h3>
-        <p>
-          A more detailed internal version for coaching review, mechanical breakdown,
-          development grades, and drill prescription.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Redacted Sample Report</h3>
-        <p>
-          An anonymous public sample can be added later to show the format while protecting
-          private information.
-        </p>
-        <a class="btn btn-outline" href="assets/reports/player-a-sample-report-redacted.pdf">
-          View Redacted Sample Report
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container grid-2">
-    <div>
-      <p class="kicker">Privacy & Data Management</p>
-      <h2>How player materials are handled</h2>
-      <p>
-        Because Future Stars works with youth players, privacy must be part of the project design.
-        Public pages should show only approved, anonymous, and selected materials.
-      </p>
-
-      <div class="table-wrap">
-        <table>
-          <tr>
-            <th>Material Type</th>
-            <th>Recommended Location</th>
-            <th>Public?</th>
-          </tr>
-
-          <tr>
-            <td>Raw videos</td>
-            <td>Private Google Drive folders</td>
-            <td>No</td>
-          </tr>
-
-          <tr>
-            <td>Full player reports</td>
-            <td>Private Google Drive / shared with parent only</td>
-            <td>No, unless redacted and approved</td>
-          </tr>
-
-          <tr>
-            <td>Selected clips or frames</td>
-            <td>Website case study</td>
-            <td>Only if approved</td>
-          </tr>
-
-          <tr>
-            <td>Anonymous case summaries</td>
-            <td>Website</td>
-            <td>Yes, if approved</td>
-          </tr>
-
-          <tr>
-            <td>Parent feedback</td>
-            <td>Website or internal notes</td>
-            <td>Only if approved</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Our Google Drive Structure</h3>
-      <pre><code>Future Stars Baseball Club/
-  Private Player Files/
-    Player A/
-      reports/
-      raw-videos/
-      selected-clips/
-      parent-share/</code></pre>
-      <p class="notice">
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="section section-alt">
-  <div class="container">
-    <p class="kicker">Community Impact</p>
-    <h2>What Future Stars contributes</h2>
-
-    <div class="grid-3">
-      <div class="card">
-        <h3>For Players</h3>
-        <p>
-          Players get visual feedback and simple drills that help them understand their swing
-          more clearly.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>For Parents</h3>
-        <p>
-          Parents receive organized feedback, reports, and a clearer picture of what their child
-          should practice.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>For the Community</h3>
-        <p>
-          The club creates a youth development environment where older student-athletes can
-          support younger players.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container grid-2">
-    <div>
-      <p class="kicker">Leadership & Teamwork</p>
-      <h2>How the project is organized</h2>
-      <p>
-        Future Stars is led by Vincent Hall and supported by assistant coaches and student volunteers.
-        The team helps organize clinics, run drill stations, support younger players, and keep sessions active.
-      </p>
-      <p>
-        Vincent’s role is important, but the portfolio page focuses on the whole Future Stars system:
-        the method, operations, reports, case studies, privacy workflow, and community value.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Team Functions</h3>
-      <ul class="checklist">
-        <li>Player check-in and session organization</li>
-        <li>Warm-up and station support</li>
-        <li>Tee work and front toss setup</li>
-        <li>Video capture support</li>
-        <li>Drill support and player encouragement</li>
-        <li>Case study and report organization</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="section section-alt">
-  <div class="container">
-    <p class="kicker">Future Development Plan</p>
-    <h2>Next Steps for Future Stars</h2>
-
-    <div class="grid-3">
-      <div class="card">
-        <h3>Build More Case Studies</h3>
-        <p>
-          Add more approved anonymous player cases as the program completes more sessions.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Complete Retest Cycles</h3>
-        <p>
-          Use 2–4 week follow-up sessions to compare baseline and retest results.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Improve Reports</h3>
-        <p>
-          Continue refining parent-friendly and coach-style report templates.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Collect Feedback</h3>
-        <p>
-          Add approved parent feedback to show whether the explanations and drills are useful.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Expand Clinics</h3>
-        <p>
-          Add event pages, clinic summaries, and approved photos as activities grow.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Strengthen Operations</h3>
-        <p>
-          Improve backend tracking for registration, consent, videos, reports, and retests.
-        </p>
-      </div>
     </div>
   </div>
 </section>
@@ -467,6 +315,161 @@
     </p>
   </div>
 </footer>
+
+<script>
+  let currentReport = "";
+
+  function addMessage(text, type) {
+    const chatMessages = document.getElementById("chatMessages");
+    const message = document.createElement("div");
+    message.className = "message " + type;
+    message.innerHTML = text;
+    chatMessages.appendChild(message);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function sendChatMessage() {
+    const input = document.getElementById("chatInput");
+    const userText = input.value.trim();
+
+    if (!userText) {
+      return;
+    }
+
+    addMessage(userText, "user");
+    input.value = "";
+
+    setTimeout(function () {
+      addMessage(
+        "Thanks for your question. In the full version, the AI will answer based on hitting mechanics, video analysis standards, and Future Stars report templates. For now, this is a website prototype.",
+        "ai"
+      );
+    }, 500);
+  }
+
+  function requestVideos() {
+    document.getElementById("uploadPanel").style.display = "block";
+
+    addMessage(
+      "Great. Please upload two videos: <br><br>1. A <strong>side-view hitting video</strong><br>2. A <strong>back-view hitting video</strong><br><br>After both are selected, click <strong>Generate Report</strong>.",
+      "ai"
+    );
+  }
+
+  function generateDemoReport() {
+    const sideVideo = document.getElementById("sideVideo").files[0];
+    const backVideo = document.getElementById("backVideo").files[0];
+
+    if (!sideVideo || !backVideo) {
+      addMessage(
+        "Please upload both required videos before generating the report: one side-view video and one back-view video.",
+        "ai"
+      );
+      return;
+    }
+
+    currentReport =
+`Future Stars Baseball Club
+AI Swing Analysis Report
+
+Player: Player Name Not Provided
+Date: ${new Date().toLocaleDateString()}
+
+Uploaded Videos:
+1. Side View: ${sideVideo.name}
+2. Back View: ${backVideo.name}
+
+Important Note:
+This is a demo report generated by the website prototype. In the full version, the AI system will analyze the actual video content.
+
+1. Video Session Summary
+The player submitted one side-view hitting video and one back-view hitting video. These two angles are useful for reviewing stance, load, stride, hip rotation, bat path, contact point, balance, and finish.
+
+2. Side-View Review
+The side view should be used to evaluate:
+- Starting stance
+- Back-hip load
+- Stride direction
+- Front-side block
+- Contact posture
+- Finish balance
+
+3. Back-View Review
+The back view should be used to evaluate:
+- Bat path
+- Swing direction
+- Plate coverage
+- Timing
+- Contact direction
+- Overall repeatability
+
+4. Main Strengths
+- Complete swing motion
+- Visible hitting intent
+- Good foundation for before/after comparison
+
+5. Main Improvement Areas
+- Improve lower-half loading
+- Keep the head quieter through contact
+- Create stronger front-side support
+- Improve swing repeatability under timing pressure
+
+6. Suggested Drills
+1. Pause Load Drill
+   Load into the back hip, pause for one second, then swing.
+
+2. Stride and Hold Drill
+   Stride, land, hold for two seconds, then swing.
+
+3. Hit and Freeze Drill
+   After contact, freeze for one second and keep the eyes near the contact zone.
+
+7. Recommended Practice Plan
+Practice 2–3 times over the next 7–10 days. Keep sessions short and focused. Use the same video angles for the next recording so progress can be compared.
+
+8. Retest Recommendation
+Record another side-view and back-view video after 7–10 days of focused practice. Compare balance, timing, contact point, and finish stability.`;
+
+    document.getElementById("reportBox").style.display = "block";
+    document.getElementById("reportBox").textContent = currentReport;
+    document.getElementById("downloadArea").style.display = "flex";
+
+    addMessage(
+      "The report has been generated. You can review it on the right side and click <strong>Download Report</strong> to save it.",
+      "ai"
+    );
+  }
+
+  function downloadReport() {
+    if (!currentReport) {
+      return;
+    }
+
+    const blob = new Blob([currentReport], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "future-stars-ai-swing-analysis-report.txt";
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }
+
+  function clearReport() {
+    document.getElementById("sideVideo").value = "";
+    document.getElementById("backVideo").value = "";
+    document.getElementById("reportBox").style.display = "none";
+    document.getElementById("downloadArea").style.display = "none";
+    document.getElementById("reportBox").textContent = "";
+    currentReport = "";
+
+    addMessage("The uploaded files and report preview have been cleared.", "ai");
+  }
+
+  document.getElementById("chatInput").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      sendChatMessage();
+    }
+  });
+</script>
 
 </body>
 </html>
