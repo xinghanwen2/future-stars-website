@@ -56,8 +56,10 @@
   
     .slide-dots {
       display: flex;
+      justify-content: center;
       gap: 8px;
-      margin-top: 14px;
+      padding: 16px 0 18px;
+      background: #ffffff;
     }
   
     .slide-dot {
@@ -73,11 +75,16 @@
       background: var(--navy);
     }
   
-    @media (max-width: 800px) {
-      .slide-frame {
-        height: 280px;
-      }
+   @media (max-width: 800px) {
+    .about-slideshow {
+      max-width: 100%;
     }
+  
+    .slide-frame {
+      aspect-ratio: 5 / 4;
+    }
+  }
+    
   </style>
 </head>
 <body>
@@ -122,14 +129,7 @@
         <img class="about-slide" src="assets/about-slide-5.jpg" alt="Future Stars Baseball Club training moment 5" />
         <img class="about-slide" src="assets/about-slide-6.jpg" alt="Future Stars Baseball Club training moment 6" />
       </div>
-
-      <div class="slide-caption">
-        <h3>Video, feedback, drills, and progress tracking</h3>
-        <p>
-          Future Stars uses video review and structured training feedback to help young players understand their swing
-          and continue improving over time.
-        </p>
-
+      
         <div class="slide-dots">
           <button class="slide-dot active" onclick="showAboutSlide(0)" aria-label="Show slide 1"></button>
           <button class="slide-dot" onclick="showAboutSlide(1)" aria-label="Show slide 2"></button>
