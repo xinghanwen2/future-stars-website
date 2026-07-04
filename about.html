@@ -7,22 +7,23 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     .about-slideshow {
-      margin-top: 34px;
+      margin: 34px auto 0;
+      max-width: 900px;
       border-radius: 22px;
       overflow: hidden;
       box-shadow: 0 14px 34px rgba(8, 39, 92, 0.12);
       background: #ffffff;
       border: 1px solid var(--line);
     }
-  
+    
     .slide-frame {
       position: relative;
       width: 100%;
-      height: 430px;
+      aspect-ratio: 5 / 4;
       overflow: hidden;
-      background: #0f172a;
+      background: #f8fafc;
     }
-  
+    
     .about-slide {
       position: absolute;
       inset: 0;
@@ -32,7 +33,7 @@
       opacity: 0;
       transition: opacity 0.8s ease;
     }
-  
+    
     .about-slide.active {
       opacity: 1;
     }
