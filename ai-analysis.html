@@ -113,6 +113,8 @@
       padding: 18px;
       margin-top: 16px;
       display: none;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
     }
 
     .ai-note {
@@ -168,8 +170,8 @@
     <span class="eyebrow">AI Analysis</span>
     <h1>AI-Powered Swing Analysis</h1>
     <p class="lead">
-      Upload one side-view hitting video and one back-view hitting video. The AI assistant will help explain
-      swing mechanics, identify improvement areas, and generate a simple player report.
+      Upload one side-view hitting video and one back-view hitting video. This test version checks whether
+      the website can send videos to the Future Stars backend server.
     </p>
 
     <div class="button-row">
@@ -195,8 +197,8 @@
         </div>
 
         <div class="message ai">
-          To generate a report, click <strong>Start Video Report</strong>. I will ask you to upload two videos:
-          one side-view video and one back-view video.
+          Current test version: click <strong>Start Video Report</strong>, upload two videos, then click
+          <strong>Test Upload to Backend</strong>. This will check whether the website can send videos to the Render backend.
         </div>
       </div>
 
@@ -210,7 +212,8 @@
       <div class="card">
         <h3>Generate AI Swing Report</h3>
         <p>
-          Click the button below to begin. The AI assistant will request two videos and then create a downloadable report.
+          Click the button below to begin. For now, this page will test video upload to the backend.
+          The real AI report feature will be added after upload works.
         </p>
 
         <button class="btn btn-primary" onclick="requestVideos()">Start Video Report</button>
@@ -225,22 +228,17 @@
           <input type="file" id="backVideo" accept="video/*" />
 
           <div class="button-row">
-            <button class="btn btn-primary" onclick="testUploadBackend()">Test Upload to Backend</button>
+            <button id="testUploadButton" class="btn btn-primary" onclick="testUploadBackend()">Test Upload to Backend</button>
             <button class="btn btn-outline" onclick="clearReport()">Clear</button>
           </div>
         </div>
 
         <div class="report-box" id="reportBox"></div>
-
-        <div class="button-row" id="downloadArea" style="display: none;">
-          <button class="btn btn-secondary" onclick="downloadReport()">Download Report</button>
-        </div>
       </div>
 
       <div class="ai-note">
-        <strong>Developer note:</strong> This page is currently a front-end prototype. A real AI report system will need
-        a backend server, secure video upload storage, and an AI model connection. Do not store private player videos
-        directly on GitHub.
+        <strong>Developer note:</strong> This version only tests whether the website can upload videos to the Render backend.
+        It does not generate the real AI report yet. Full raw player videos and private reports should not be stored on GitHub.
       </div>
     </div>
 
@@ -265,12 +263,12 @@
 
       <div class="card">
         <h3>3. AI Review</h3>
-        <p>The AI summarizes strengths, improvement areas, and possible training focus.</p>
+        <p>In the full version, the backend will extract frames and send them to the AI model.</p>
       </div>
 
       <div class="card">
         <h3>4. Download Report</h3>
-        <p>The user can download a simple report and save it for follow-up training.</p>
+        <p>In the full version, the user will be able to download a simple report for follow-up training.</p>
       </div>
     </div>
   </div>
@@ -319,8 +317,6 @@
 <script>
   let currentReport = "";
 
- 
-  
   function addMessage(text, type) {
     const chatMessages = document.getElementById("chatMessages");
     const message = document.createElement("div");
@@ -343,7 +339,7 @@
 
     setTimeout(function () {
       addMessage(
-        "Thanks for your question. In the full version, the AI will answer based on hitting mechanics, video analysis standards, and Future Stars report templates. For now, this is a website prototype.",
+        "Thanks for your question. In the full version, the AI will answer based on hitting mechanics, video analysis standards, and Future Stars report templates. For now, this page is testing backend upload.",
         "ai"
       );
     }, 500);
@@ -358,11 +354,12 @@
     );
   }
 
-  
   async function testUploadBackend() {
     const sideVideo = document.getElementById("sideVideo").files[0];
     const backVideo = document.getElementById("backVideo").files[0];
-  
+    const reportBox = document.getElementById("reportBox");
+    const testUploadButton = document.getElementById("testUploadButton");
+
     if (!sideVideo || !backVideo) {
       addMessage(
         "Please upload both required videos: one side-view video and one back-view video.",
@@ -370,158 +367,89 @@
       );
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("sideVideo", sideVideo);
     formData.append("backVideo", backVideo);
-  
-    const reportBox = document.getElementById("reportBox");
+
     reportBox.style.display = "block";
-    reportBox.textContent = "Uploading videos to backend...";
-  
+    reportBox.textContent = "Uploading videos to backend...\n\nThis may take a little time if the Render server is waking up.";
+
+    testUploadButton.disabled = true;
+    testUploadButton.textContent = "Uploading...";
+
     try {
       const response = await fetch("https://future-stars-ai-backend.onrender.com/api/test-upload", {
         method: "POST",
         body: formData
       });
-  
-      const data = await response.json();
-  
+
+      let data = {};
+
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        data = {};
+      }
+
       if (!response.ok) {
-        reportBox.textContent = data.error || "Upload failed.";
-        addMessage("Upload failed. Please check the videos and try again.", "ai");
+        reportBox.textContent =
+          "Upload failed.\n\n" +
+          "Status code: " + response.status + "\n" +
+          "Message: " + (data.error || "The backend returned an error.");
+
+        addMessage(
+          "Upload failed. Please check the videos and try again. You can also open the Render backend health link to make sure the backend is awake.",
+          "ai"
+        );
         return;
       }
-  
+
       reportBox.textContent =
         "Upload test successful!\n\n" +
-        "Side video: " + data.files.sideVideo.originalName + "\n" +
+        "Side video file name: " + data.files.sideVideo.originalName + "\n" +
         "Side video size: " + data.files.sideVideo.size + " bytes\n\n" +
-        "Back video: " + data.files.backVideo.originalName + "\n" +
+        "Back video file name: " + data.files.backVideo.originalName + "\n" +
         "Back video size: " + data.files.backVideo.size + " bytes\n\n" +
-        "Backend message: " + data.message;
-  
+        "Backend message: " + data.message + "\n\n" +
+        "Good result: the website successfully sent both videos to the Render backend.\n\n" +
+        "Next step later: add frame extraction and real AI report generation.";
+
       addMessage(
-        "Good. The website successfully sent both videos to the Render backend.",
+        "Good. The website successfully sent both videos to the Render backend. The next development step is frame extraction and real AI report generation.",
         "ai"
       );
     } catch (error) {
       console.error(error);
+
       reportBox.textContent =
-        "Upload failed. The backend may be sleeping or there may be a connection problem.";
+        "Upload failed.\n\n" +
+        "Possible reasons:\n" +
+        "1. The Render free server is sleeping and needs time to wake up.\n" +
+        "2. The backend is redeploying.\n" +
+        "3. The video files are too large.\n" +
+        "4. There is a network or CORS problem.\n\n" +
+        "Try again in one minute. Also test this link:\n" +
+        "https://future-stars-ai-backend.onrender.com/api/health";
+
       addMessage(
         "Upload failed. Try again in one minute because the free Render server may need time to wake up.",
         "ai"
       );
+    } finally {
+      testUploadButton.disabled = false;
+      testUploadButton.textContent = "Test Upload to Backend";
     }
-  }
-
-  function generateDemoReport() {
-    const sideVideo = document.getElementById("sideVideo").files[0];
-    const backVideo = document.getElementById("backVideo").files[0];
-
-    if (!sideVideo || !backVideo) {
-      addMessage(
-        "Please upload both required videos before generating the report: one side-view video and one back-view video.",
-        "ai"
-      );
-      return;
-    }
-
-    currentReport =
-`Future Stars Baseball Club
-AI Swing Analysis Report
-
-Player: Player Name Not Provided
-Date: ${new Date().toLocaleDateString()}
-
-Uploaded Videos:
-1. Side View: ${sideVideo.name}
-2. Back View: ${backVideo.name}
-
-Important Note:
-This is a demo report generated by the website prototype. In the full version, the AI system will analyze the actual video content.
-
-1. Video Session Summary
-The player submitted one side-view hitting video and one back-view hitting video. These two angles are useful for reviewing stance, load, stride, hip rotation, bat path, contact point, balance, and finish.
-
-2. Side-View Review
-The side view should be used to evaluate:
-- Starting stance
-- Back-hip load
-- Stride direction
-- Front-side block
-- Contact posture
-- Finish balance
-
-3. Back-View Review
-The back view should be used to evaluate:
-- Bat path
-- Swing direction
-- Plate coverage
-- Timing
-- Contact direction
-- Overall repeatability
-
-4. Main Strengths
-- Complete swing motion
-- Visible hitting intent
-- Good foundation for before/after comparison
-
-5. Main Improvement Areas
-- Improve lower-half loading
-- Keep the head quieter through contact
-- Create stronger front-side support
-- Improve swing repeatability under timing pressure
-
-6. Suggested Drills
-1. Pause Load Drill
-   Load into the back hip, pause for one second, then swing.
-
-2. Stride and Hold Drill
-   Stride, land, hold for two seconds, then swing.
-
-3. Hit and Freeze Drill
-   After contact, freeze for one second and keep the eyes near the contact zone.
-
-7. Recommended Practice Plan
-Practice 2–3 times over the next 7–10 days. Keep sessions short and focused. Use the same video angles for the next recording so progress can be compared.
-
-8. Retest Recommendation
-Record another side-view and back-view video after 7–10 days of focused practice. Compare balance, timing, contact point, and finish stability.`;
-
-    document.getElementById("reportBox").style.display = "block";
-    document.getElementById("reportBox").textContent = currentReport;
-    document.getElementById("downloadArea").style.display = "flex";
-
-    addMessage(
-      "The report has been generated. You can review it on the right side and click <strong>Download Report</strong> to save it.",
-      "ai"
-    );
-  }
-
-  function downloadReport() {
-    if (!currentReport) {
-      return;
-    }
-
-    const blob = new Blob([currentReport], { type: "text/plain" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "future-stars-ai-swing-analysis-report.txt";
-    link.click();
-    URL.revokeObjectURL(link.href);
   }
 
   function clearReport() {
     document.getElementById("sideVideo").value = "";
     document.getElementById("backVideo").value = "";
     document.getElementById("reportBox").style.display = "none";
-    document.getElementById("downloadArea").style.display = "none";
     document.getElementById("reportBox").textContent = "";
     currentReport = "";
 
-    addMessage("The uploaded files and report preview have been cleared.", "ai");
+    addMessage("The uploaded files and upload test result have been cleared.", "ai");
   }
 
   document.getElementById("chatInput").addEventListener("keydown", function (event) {
