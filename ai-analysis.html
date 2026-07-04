@@ -394,10 +394,7 @@
         </div>
 
         <div class="report-actions">
-          <button class="btn btn-secondary" onclick="copyReport()">Copy Report</button>
-          <button class="btn btn-secondary" onclick="downloadTxtReport()">Download TXT</button>
-          <button class="btn btn-primary" onclick="downloadPdfReport()">Download PDF</button>
-          <button class="btn btn-primary" onclick="printReportAsPdf()">Print / Save as PDF</button>
+          <button class="btn btn-primary" onclick="downloadPdfReport()">Download PDF with frames</button>
         </div>
       </div>
 
@@ -667,7 +664,7 @@
 
       setStatus(
         "AI report generated successfully.\n\n" +
-        "You can now copy the report, download it as TXT, download a PDF, or use Print / Save as PDF."
+        "You can now download the PDF report."
       );
 
       addMessage(
