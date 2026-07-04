@@ -5,6 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Future Stars Baseball Club</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .about-slideshow {
+      margin-top: 34px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(8, 39, 92, 0.12);
+      background: #ffffff;
+      border: 1px solid var(--line);
+    }
+  
+    .slide-frame {
+      position: relative;
+      width: 100%;
+      height: 430px;
+      overflow: hidden;
+      background: #0f172a;
+    }
+  
+    .about-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+  
+    .about-slide.active {
+      opacity: 1;
+    }
+  
+    .slide-caption {
+      padding: 18px 22px;
+      background: #ffffff;
+    }
+  
+    .slide-caption h3 {
+      margin: 0 0 6px;
+      color: var(--navy);
+    }
+  
+    .slide-caption p {
+      margin: 0;
+      color: #64748b;
+      line-height: 1.5;
+    }
+  
+    .slide-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+  
+    .slide-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: #cbd5e1;
+      cursor: pointer;
+    }
+  
+    .slide-dot.active {
+      background: var(--navy);
+    }
+  
+    @media (max-width: 800px) {
+      .slide-frame {
+        height: 280px;
+      }
+    }
+  </style>
 </head>
 <body>
 <header class="site-header">
@@ -33,9 +106,39 @@
 
 <section class="page-hero">
   <div class="container">
-    <span class="eyebrow">About the Club</span>
+    <span class="eyebrow">About</span>
     <h1>Future Stars Baseball Club</h1>
-    <p class="lead">Helping young players see their swing clearly, understand key issues, follow targeted drills, and track progress over time.</p>
+    <p class="lead">
+      Helping young players see their swing clearly, understand key issues, follow targeted drills, and track progress over time.
+    </p>
+
+    <div class="about-slideshow">
+      <div class="slide-frame">
+        <img class="about-slide active" src="assets/about-slide-1.jpg" alt="Future Stars Baseball Club training moment 1" />
+        <img class="about-slide" src="assets/about-slide-2.jpg" alt="Future Stars Baseball Club training moment 2" />
+        <img class="about-slide" src="assets/about-slide-3.jpg" alt="Future Stars Baseball Club training moment 3" />
+        <img class="about-slide" src="assets/about-slide-4.jpg" alt="Future Stars Baseball Club training moment 4" />
+        <img class="about-slide" src="assets/about-slide-5.jpg" alt="Future Stars Baseball Club training moment 5" />
+        <img class="about-slide" src="assets/about-slide-6.jpg" alt="Future Stars Baseball Club training moment 6" />
+      </div>
+
+      <div class="slide-caption">
+        <h3>Video, feedback, drills, and progress tracking</h3>
+        <p>
+          Future Stars uses video review and structured training feedback to help young players understand their swing
+          and continue improving over time.
+        </p>
+
+        <div class="slide-dots">
+          <button class="slide-dot active" onclick="showAboutSlide(0)" aria-label="Show slide 1"></button>
+          <button class="slide-dot" onclick="showAboutSlide(1)" aria-label="Show slide 2"></button>
+          <button class="slide-dot" onclick="showAboutSlide(2)" aria-label="Show slide 3"></button>
+          <button class="slide-dot" onclick="showAboutSlide(3)" aria-label="Show slide 4"></button>
+          <button class="slide-dot" onclick="showAboutSlide(4)" aria-label="Show slide 5"></button>
+          <button class="slide-dot" onclick="showAboutSlide(5)" aria-label="Show slide 6"></button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <section class="section">
@@ -75,5 +178,31 @@
     <p class="small">Important privacy note: player photos, videos, and identifying information should only be published after confirming parent permission.</p>
   </div>
 </footer>
+<script>
+  let aboutSlideIndex = 0;
+  const aboutSlides = document.querySelectorAll(".about-slide");
+  const aboutDots = document.querySelectorAll(".slide-dot");
+
+  function showAboutSlide(index) {
+    if (aboutSlides.length === 0 || aboutDots.length === 0) {
+      return;
+    }
+
+    aboutSlides[aboutSlideIndex].classList.remove("active");
+    aboutDots[aboutSlideIndex].classList.remove("active");
+
+    aboutSlideIndex = index;
+
+    aboutSlides[aboutSlideIndex].classList.add("active");
+    aboutDots[aboutSlideIndex].classList.add("active");
+  }
+
+  if (aboutSlides.length > 0 && aboutDots.length > 0) {
+    setInterval(function () {
+      const nextIndex = (aboutSlideIndex + 1) % aboutSlides.length;
+      showAboutSlide(nextIndex);
+    }, 3500);
+  }
+</script>
 </body>
 </html>
