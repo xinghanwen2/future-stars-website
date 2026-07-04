@@ -5,6 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Founder | Future Stars Baseball Club</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .founder-profile-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) 320px;
+      gap: 32px;
+      align-items: center;
+    }
+  
+    .founder-photo-wrap {
+      text-align: center;
+    }
+  
+    .founder-photo {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 18px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 12px 28px rgba(8, 39, 92, 0.16);
+    }
+  
+    .founder-caption {
+      margin-top: 12px;
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  
+    @media (max-width: 850px) {
+      .founder-profile-card {
+        grid-template-columns: 1fr;
+      }
+  
+      .founder-photo {
+        max-width: 260px;
+      }
+    }
+  </style>
+  
 </head>
 <body>
 <header class="site-header">
@@ -39,19 +78,39 @@
   </div>
 </section>
 <section class="section">
-  <div class="container grid-2">
-    <div class="card">
-      <h3>Founder Overview</h3>
-      <p>Vincent’s interest in youth coaching began during his freshman year of high school, when he started helping players ages 6–12 develop basic hitting and throwing skills. He saw that many young players were working hard but did not always understand what was happening in their own swing.</p>
-      <p>That observation became the foundation for Future Stars Baseball Club. Vincent created the club to combine baseball experience, structured video review, simple data tracking, and individualized feedback in a way that helps young players understand what they are doing well, what needs to improve, and which drills can help them move forward.</p>
+  <div class="container">
+    <div class="card founder-profile-card">
+      <div>
+        <p class="kicker">Founder Overview</p>
+        <h2>Building a Clearer Way for Young Players to Improve</h2>
+
+        <p>
+          Vincent’s interest in youth coaching began during his freshman year of high school,
+          when he started helping players ages 6–12 develop basic hitting and throwing skills.
+          He saw that many young players were working hard but did not always understand what
+          was happening in their own swing.
+        </p>
+
+        <p>
+          That observation became the foundation for Future Stars Baseball Club. Vincent created
+          the club to combine baseball experience, structured video review, simple data tracking,
+          and individualized feedback in a way that helps young players understand what they are
+          doing well, what needs to improve, and which drills can help them move forward.
+        </p>
+      </div>
+
+      <div class="founder-photo-wrap">
+        <img
+          class="founder-photo"
+          src="assets/vincent-founder.jpg"
+          alt="Vincent Hall, founder of Future Stars Baseball Club"
+        />
+
+        <p class="founder-caption">
+          Vincent Hall, Founder & Hitting Analysis Lead
+        </p>
+      </div>
     </div>
-  <div class="card" style="text-align: center;">
-    <img
-      src="assets/vincent-founder.jpg"
-      alt="Vincent Hall, founder of Future Stars Baseball Club"
-      style="width: 100%; max-width: 280px; border-radius: 14px; display: block; margin: 0 auto;"
-    />
-  </div>
   </div>
 </section>
 <section class="section section-alt">
