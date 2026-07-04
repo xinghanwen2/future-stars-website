@@ -544,23 +544,55 @@
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  function sendChatMessage() {
+  async function sendChatMessage() {
     const input = document.getElementById("chatInput");
     const userText = input.value.trim();
-
+  
     if (!userText) {
       return;
     }
-
+  
     addMessage(userText, "user");
     input.value = "";
-
-    setTimeout(function () {
-      addMessage(
-        "Thanks for your question. In the full version, the AI chat can be connected to hitting mechanics guidance and report templates. For now, this page focuses on AI video report generation.",
-        "ai"
-      );
-    }, 500);
+  
+    addMessage("Thinking...", "ai");
+  
+    const chatMessages = document.getElementById("chatMessages");
+    const thinkingMessage = chatMessages.lastElementChild;
+  
+    try {
+      const response = await fetch("https://future-stars-ai-backend.onrender.com/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: userText
+        })
+      });
+  
+      let data = {};
+  
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        data = {};
+      }
+  
+      if (!response.ok) {
+        thinkingMessage.textContent =
+          "Sorry, the AI chat failed. Please try again in one minute.";
+        return;
+      }
+  
+      thinkingMessage.textContent =
+        data.reply || "Sorry, I could not generate a reply.";
+    } catch (error) {
+      console.error(error);
+  
+      thinkingMessage.textContent =
+        "Sorry, the AI chat is not available right now. The backend may be waking up or redeploying.";
+    }
   }
 
   function requestVideos() {
