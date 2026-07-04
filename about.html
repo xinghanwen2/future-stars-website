@@ -12,10 +12,10 @@
       border-radius: 22px;
       overflow: hidden;
       box-shadow: 0 14px 34px rgba(8, 39, 92, 0.12);
-      background: #ffffff;
       border: 1px solid var(--line);
+      position: relative;
     }
-
+    
     .slide-frame {
       position: relative;
       width: 100%;
@@ -37,53 +37,53 @@
     .about-slide.active {
       opacity: 1;
     }
-  
-    .slide-caption {
-      padding: 18px 22px;
-      background: #ffffff;
-    }
-  
-    .slide-caption h3 {
-      margin: 0 0 6px;
-      color: var(--navy);
-    }
-  
-    .slide-caption p {
-      margin: 0;
-      color: #64748b;
-      line-height: 1.5;
-    }
-  
+    
     .slide-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
       display: flex;
       justify-content: center;
-      gap: 8px;
-      padding: 16px 0 18px;
-      background: #ffffff;
+      gap: 10px;
+      z-index: 5;
     }
-  
+    
     .slide-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
       border: none;
-      background: #cbd5e1;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 20px;
+      line-height: 1;
       cursor: pointer;
+      padding: 0;
+      transition: transform 0.2s ease, color 0.2s ease;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
     }
-  
+    
+    .slide-dot:hover {
+      color: #ffd166;
+      transform: scale(1.15);
+    }
+    
     .slide-dot.active {
-      background: var(--navy);
+      color: #f4a621;
+      transform: scale(1.2);
     }
-  
-   @media (max-width: 800px) {
-    .about-slideshow {
-      max-width: 100%;
+    
+    @media (max-width: 800px) {
+      .about-slideshow {
+        max-width: 100%;
+      }
+    
+      .slide-frame {
+        aspect-ratio: 5 / 4;
+      }
+    
+      .slide-dot {
+        font-size: 18px;
+      }
     }
-  
-    .slide-frame {
-      aspect-ratio: 5 / 4;
-    }
-  }
     
   </style>
 </head>
@@ -128,15 +128,14 @@
         <img class="about-slide" src="assets/about-slide-4.jpg" alt="Future Stars Baseball Club training moment 4" />
         <img class="about-slide" src="assets/about-slide-5.jpg" alt="Future Stars Baseball Club training moment 5" />
         <img class="about-slide" src="assets/about-slide-6.jpg" alt="Future Stars Baseball Club training moment 6" />
-      </div>
       
         <div class="slide-dots">
-          <button class="slide-dot active" onclick="showAboutSlide(0)" aria-label="Show slide 1"></button>
-          <button class="slide-dot" onclick="showAboutSlide(1)" aria-label="Show slide 2"></button>
-          <button class="slide-dot" onclick="showAboutSlide(2)" aria-label="Show slide 3"></button>
-          <button class="slide-dot" onclick="showAboutSlide(3)" aria-label="Show slide 4"></button>
-          <button class="slide-dot" onclick="showAboutSlide(4)" aria-label="Show slide 5"></button>
-          <button class="slide-dot" onclick="showAboutSlide(5)" aria-label="Show slide 6"></button>
+          <button class="slide-dot active" onclick="showAboutSlide(0)" aria-label="Show slide 1">☆</button>
+          <button class="slide-dot" onclick="showAboutSlide(1)" aria-label="Show slide 2">☆</button>
+          <button class="slide-dot" onclick="showAboutSlide(2)" aria-label="Show slide 3">☆</button>
+          <button class="slide-dot" onclick="showAboutSlide(3)" aria-label="Show slide 4">☆</button>
+          <button class="slide-dot" onclick="showAboutSlide(4)" aria-label="Show slide 5">☆</button>
+          <button class="slide-dot" onclick="showAboutSlide(5)" aria-label="Show slide 6">☆</button>
         </div>
       </div>
     </div>
