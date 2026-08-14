@@ -5,8 +5,175 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Case Studies | Future Stars Baseball Club</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .case-page-intro {
+      max-width: 900px;
+    }
+
+    .case-note {
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #173b74;
+      border-radius: 16px;
+      padding: 16px 18px;
+      line-height: 1.6;
+      margin-top: 24px;
+    }
+
+    .case-study-list {
+      display: grid;
+      gap: 28px;
+    }
+
+    .case-study-card {
+      padding: 28px;
+    }
+
+    .case-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .case-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #fff4d8;
+      color: #8a5a00;
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .case-study-card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+
+    .case-subtitle {
+      margin: 0;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .score-box {
+      min-width: 150px;
+      padding: 16px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .score-box .score {
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .score-box .score-label {
+      margin-top: 8px;
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .case-section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .case-detail {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: #ffffff;
+    }
+
+    .case-detail h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: var(--navy);
+    }
+
+    .case-detail p {
+      margin-top: 0;
+      line-height: 1.6;
+    }
+
+    .case-profile {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .case-profile div {
+      padding-bottom: 8px;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .case-profile div:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .case-list {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.7;
+    }
+
+    .pdf-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .privacy-note-small {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      color: #475569;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .case-divider {
+      height: 1px;
+      background: var(--line);
+      margin: 24px 0 0;
+    }
+
+    @media (max-width: 900px) {
+      .case-section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .case-study-card {
+        padding: 22px;
+      }
+
+      .score-box {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html">
@@ -16,6 +183,7 @@
         <div class="brand-sub">Youth Baseball Development Initiative</div>
       </div>
     </a>
+
     <nav class="nav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -32,142 +200,367 @@
 </header>
 
 <section class="page-hero">
-  <div class="container">
-    <span class="eyebrow">Anonymous Case Study</span>
-    <h1>Player A, Age Unknown</h1>
-    <p class="lead">A simplified public case study showing how Future Stars turns video review into clear feedback, drills, and a next-step training plan.</p>
+  <div class="container case-page-intro">
+    <span class="eyebrow">Case Studies</span>
+    <h1>Player Development Case Studies</h1>
+    <p class="lead">
+      These public case studies show how Future Stars Baseball Club turns video review into clear observations,
+      simple scores, focused drills, and follow-up goals.
+    </p>
+
+    <div class="case-note">
+      <strong>Privacy note:</strong> These summaries use public case-study labels. Full PDF reports should only be
+      posted when parent permission has been confirmed. Raw videos and private player information should stay in
+      private folders unless approved for public use.
+    </div>
   </div>
 </section>
 
 <section class="section">
-  <div class="container">
-    <div class="privacy"><strong>Privacy note:</strong>This case is anonymized. Full reports and raw videos are stored privately unless a redacted version is cleared for public release.</div>
+  <div class="container case-study-list">
 
-    <div class="grid-2" style="margin-top:24px;">
-      <div class="card">
-        <span class="case-badge">Baseline Hitting Analysis</span>
-        <h2>Case Study: Player A, Age Unknown</h2>
-        <p><strong>Session Type:</strong> Baseline hitting evaluation</p>
-        <p><strong>Views Collected:</strong> Side view and back view</p>
-        <p><strong>Environments:</strong> Tee work and front toss</p>
-        <p><strong>Current Status:</strong> Baseline report completed; retest comparison can be added later.</p>
+    <article class="card case-study-card">
+      <div class="case-top">
+        <div>
+          <span class="case-badge">Four-Video Baseline</span>
+          <h2>Case Study: Player A — Improving Load Sequence and Front-Side Stability</h2>
+          <p class="case-subtitle">
+            A baseline hitting case focused on back-hip load, swing sequence, contact consistency, and finish control.
+          </p>
+        </div>
+
+        <div class="score-box">
+          <div class="score">22 / 30</div>
+          <div class="score-label">Initial Score</div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Big Picture Summary</h3>
-        <p>Player A already has a workable swing foundation: complete swing motion, contact ability, repeatable general pattern, and strong training upside.</p>
-        <p>The main development priority is not whether Player A can hit the ball. The priority is improving how efficiently the body creates force.</p>
+
+      <div class="case-section-grid">
+        <div class="case-detail">
+          <h3>Player Profile</h3>
+          <div class="case-profile">
+            <div><strong>Age:</strong> Youth player</div>
+            <div><strong>Level:</strong> Youth Baseball</div>
+            <div><strong>Focus Area:</strong> Back-hip load, front-side support, and swing sequence</div>
+          </div>
+        </div>
+
+        <div class="case-detail">
+          <h3>Video Angles Used</h3>
+          <p>
+            Side Tee + Back Tee + Side Toss + Back Toss
+          </p>
+        </div>
       </div>
-    </div>
+
+      <div class="case-section-grid">
+        <div class="case-detail">
+          <h3>Initial Observation</h3>
+          <p>
+            Player A showed good swing intent and a trainable foundation. The main improvement needs were a more
+            complete back-hip load, less early hand and upper-body involvement, stronger front-side support, and a
+            more stable finish direction.
+          </p>
+        </div>
+
+        <div class="case-detail">
+          <h3>Key Findings</h3>
+          <ul class="case-list">
+            <li>Back-hip load was not always complete.</li>
+            <li>Hands and upper body sometimes started early.</li>
+            <li>Front-side support needed to become more stable.</li>
+            <li>Finish direction and balance were not fully repeatable.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-section-grid">
+        <div class="case-detail">
+          <h3>Vincent&rsquo;s Recommendations</h3>
+          <ul class="case-list">
+            <li>Build a stronger back-hip load before launch.</li>
+            <li>Let the body lead before the hands release.</li>
+            <li>Improve front-side support after stride.</li>
+            <li>Hold the finish to check balance and direction.</li>
+          </ul>
+        </div>
+
+        <div class="case-detail">
+          <h3>Training Drills</h3>
+          <ul class="case-list">
+            <li>Load Pause Drill</li>
+            <li>Stride-and-Hold Drill</li>
+            <li>Connection Drill</li>
+            <li>Hit-and-Freeze</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-detail" style="margin-top:20px;">
+        <h3>Follow-Up Goal</h3>
+        <p>
+          Increase high-quality contact, reduce poor contact, and improve body sequence and finish stability during
+          the next retest.
+        </p>
+      </div>
+
+      <div class="pdf-actions">
+        <a class="btn btn-primary" href="assets/reports/austin-hitting-baseline-report-en.pdf" target="_blank" rel="noopener">
+          View English PDF
+        </a>
+        <a class="btn btn-secondary" href="assets/reports/austin-hitting-baseline-report-cn.pdf" target="_blank" rel="noopener">
+          View Chinese PDF
+        </a>
+      </div>
+
+      <div class="privacy-note-small">
+        <strong>Privacy Note:</strong> This case study is anonymized for public presentation. Full reports should only be shared with approval.
+      </div>
+    </article>
+
+    <article class="card case-study-card">
+      <div class="case-top">
+        <div>
+          <span class="case-badge">Four-Video Baseline</span>
+          <h2>Case Study: Player B — Shortening Swing Path and Improving Direction</h2>
+          <p class="case-subtitle">
+            A baseline hitting case focused on swing path, timing, front-side direction, and contact depth.
+          </p>
+        </div>
+
+        <div class="score-box">
+          <div class="score">23 / 30</div>
+          <div class="score-label">Initial Score</div>
+        </div>
+      </div>
+
+      <div class="case-section-grid">
+        <div class="case-detail">
+          <h3>Player Profile</h3>
+          <div class="case-profile">
+            <div><strong>Age:</strong> Youth player</div>
+            <div><strong>Level:</strong> Youth Baseball</div>
+            <div><strong>Focus Area:</strong> Swing path, hand timing, and front-side direction</div>
+          </div>
+        </div>
+
+        <div class="case-detail">
+          <h3>Video Angles Used</h3>
+          <p>
+            Side Tee + Back Tee + Side Toss + Back Toss
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section-grid">
+        <div class="case-detail">
+          <h3>Initial Observation</h3>
+          <p>
+            Player B showed clear strength, good swing intent, and acceptable contact. The main improvement need was
+            not raw strength, but a shorter swing path, better sequencing, and more stable front-side direction.
+          </p>
+        </div>
+
+        <div class="case-detail">
+          <h3>Key Findings</h3>
+          <ul class="case-list">
+            <li>Swing path could get long or too big before contact.</li>
+            <li>Hands and upper body sometimes started too early.</li>
+            <li>Front side opened early enough to affect direction and stability.</li>
+            <li>Contact depth and sweet-spot consistency fluctuated.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-section-grid">
+        <div class="case-detail">
+          <h3>Vincent&rsquo;s Recommendations</h3>
+          <ul class="case-list">
+            <li>Shorten the path into the contact zone.</li>
+            <li>Keep energy in the back hip and back leg before launch.</li>
+            <li>Train body-first rotation with later hand release.</li>
+            <li>Use finish control to check body direction.</li>
+          </ul>
+        </div>
+
+        <div class="case-detail">
+          <h3>Training Drills</h3>
+          <ul class="case-list">
+            <li>Short-to-Contact Drill</li>
+            <li>Load Pause Drill</li>
+            <li>Stride-and-Hold Drill</li>
+            <li>Hit-and-Freeze</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-detail" style="margin-top:20px;">
+        <h3>Follow-Up Goal</h3>
+        <p>
+          Increase high-quality contact by shortening the swing path, improving front-side stability, and making
+          contact depth more repeatable.
+        </p>
+      </div>
+
+      <div class="pdf-actions">
+        <a class="btn btn-primary" href="assets/reports/justin-hitting-baseline-report-en.pdf" target="_blank" rel="noopener">
+          View English PDF
+        </a>
+        <a class="btn btn-secondary" href="assets/reports/justin-hitting-baseline-report-cn.pdf" target="_blank" rel="noopener">
+          View Chinese PDF
+        </a>
+      </div>
+
+      <div class="privacy-note-small">
+        <strong>Privacy Note:</strong> This case study is anonymized for public presentation. Full reports should only be shared with approval.
+      </div>
+    </article>
+
+    <article class="card case-study-card">
+      <div class="case-top">
+        <div>
+          <span class="case-badge">Four-Video Baseline</span>
+          <h2>Case Study: Player C — Controlling Forward Move and Contact Depth</h2>
+          <p class="case-subtitle">
+            A baseline hitting case focused on forward-move control, front-side block, timing consistency, and finish balance.
+          </p>
+        </div>
+
+        <div class="score-box">
+          <div class="score">24 / 30</div>
+          <div class="score-label">Initial Score</div>
+        </div>
+      </div>
+
+      <div class="case-section-grid">
+        <div class="case-detail">
+          <h3>Player Profile</h3>
+          <div class="case-profile">
+            <div><strong>Age:</strong> Youth player</div>
+            <div><strong>Level:</strong> Youth Baseball</div>
+            <div><strong>Focus Area:</strong> Forward move, front-side block, and contact depth</div>
+          </div>
+        </div>
+
+        <div class="case-detail">
+          <h3>Video Angles Used</h3>
+          <p>
+            Side Tee + Back Tee + Side Toss + Back Toss
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section-grid">
+        <div class="case-detail">
+          <h3>Initial Observation</h3>
+          <p>
+            Player C showed strong body coordination, good swing intent, clear lower-half involvement, and a complete
+            finish. The main development need was control: the forward move could get too large, the front side could
+            open early, and contact depth needed to become more repeatable.
+          </p>
+        </div>
+
+        <div class="case-detail">
+          <h3>Key Findings</h3>
+          <ul class="case-list">
+            <li>Forward move sometimes became too large before contact.</li>
+            <li>Front side opened early enough to affect direction and stability.</li>
+            <li>Contact depth and timing consistency fluctuated.</li>
+            <li>Finish balance was not fully repeatable on some swings.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-section-grid">
+        <div class="case-detail">
+          <h3>Vincent&rsquo;s Recommendations</h3>
+          <ul class="case-list">
+            <li>Control the forward move after the leg lift.</li>
+            <li>Build a stronger front-side block.</li>
+            <li>Keep the front shoulder and front hip from opening too early.</li>
+            <li>Hold the finish to check body direction and balance.</li>
+          </ul>
+        </div>
+
+        <div class="case-detail">
+          <h3>Training Drills</h3>
+          <ul class="case-list">
+            <li>Controlled Leg Lift Drill</li>
+            <li>Stride-and-Hold Drill</li>
+            <li>Hit Behind the Front Side</li>
+            <li>Hit-and-Freeze</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-detail" style="margin-top:20px;">
+        <h3>Follow-Up Goal</h3>
+        <p>
+          Increase the percentage of good contact by controlling forward move, stabilizing the front side, and making
+          contact depth more consistent.
+        </p>
+      </div>
+
+      <div class="pdf-actions">
+        <a class="btn btn-primary" href="assets/reports/leo-hitting-baseline-report-en.pdf" target="_blank" rel="noopener">
+          View English PDF
+        </a>
+        <a class="btn btn-secondary" href="assets/reports/leo-hitting-baseline-report-cn.pdf" target="_blank" rel="noopener">
+          View Chinese PDF
+        </a>
+      </div>
+
+      <div class="privacy-note-small">
+        <strong>Privacy Note:</strong> This case study is anonymized for public presentation. Full reports should only be shared with approval.
+      </div>
+    </article>
+
   </div>
 </section>
 
 <section class="section section-alt">
-  <div class="container">
-    <h2>What Player A Did Well</h2>
-    <div class="grid-4">
-      <div class="card"><h3>Complete Swing</h3><p>Player A finishes the swing instead of stopping early.</p></div>
-      <div class="card"><h3>Contact Ability</h3><p>Player A can find the ball in tee work and moving-ball front toss.</p></div>
-      <div class="card"><h3>Repeatability</h3><p>The general swing shape repeats well enough for before/after comparison.</p></div>
-      <div class="card"><h3>Effort and Intent</h3><p>Player A swings with commitment rather than simply poking at the ball.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
   <div class="container grid-2">
     <div>
-      <h2>Main Improvement Areas</h2>
-      <div class="table-wrap">
-        <table>
-          <tr><th>Priority</th><th>Meaning</th></tr>
-          <tr><td>Back-Hip Load</td><td>Sit into the back hip more deeply before the swing starts.</td></tr>
-          <tr><td>Front-Side Block</td><td>After stride, the front side should brace more firmly so energy does not leak forward.</td></tr>
-          <tr><td>Hip-Led Rotation</td><td>The hips should begin the turn before the upper body opens.</td></tr>
-          <tr><td>Head Stability</td><td>The head should stay quieter through contact.</td></tr>
-        </table>
-      </div>
-    </div>
-    <div>
-      <h2>Simple Scorecard</h2>
-      <div class="table-wrap">
-        <table>
-          <tr><th>Category</th><th>Score</th></tr>
-          <tr><td>Swing completeness</td><td>7 / 10</td></tr>
-          <tr><td>Repeatability</td><td>7 / 10</td></tr>
-          <tr><td>Lower-half use</td><td>5 / 10</td></tr>
-          <tr><td>Head control</td><td>6 / 10</td></tr>
-          <tr><td>Training upside</td><td>8 / 10</td></tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-alt">
-  <div class="container">
-    <h2>Recommended Drills</h2>
-    <div class="grid-3">
-      <div class="card"><h3>Pause Load Drill</h3><p>Load into the back hip, pause for one second, then swing.</p></div>
-      <div class="card"><h3>Stride and Hold Drill</h3><p>Stride, land, hold for two seconds, then swing.</p></div>
-      <div class="card"><h3>Hit and Freeze Drill</h3><p>After contact, freeze for one second and keep the eyes near the contact zone.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2>Public Media Section</h2>
-    <p class="section-intro">Upload approved public clips or screenshots using these file names. If a file is missing, the placeholder will show instead.</p>
-
-    <div class="grid-2">
-      <div class="card">
-        <h3>Side View Baseline Clip</h3>
-        <video controls width="100%" poster="assets/cases/player-a/player-a-baseline-side-frame.jpg">
-          <source src="assets/cases/player-a/player-a-baseline-side.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <p class="small">File name: <code>assets/cases/player-a/player-a-baseline-side.mp4</code></p>
-      </div>
-      <div class="card">
-        <h3>Back View Baseline Clip</h3>
-        <video controls width="100%" poster="assets/cases/player-a/player-a-baseline-back-frame.jpg">
-          <source src="assets/cases/player-a/player-a-baseline-back.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <p class="small">File name: <code>assets/cases/player-a/player-a-baseline-back.mp4</code></p>
-      </div>
-      <div class="card">
-        <h3>Retest Side View Clip</h3>
-        <video controls width="100%" poster="assets/cases/player-a/player-a-retest-side-frame.jpg">
-          <source src="assets/cases/player-a/player-a-retest-side.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <p class="small">File name: <code>assets/cases/player-a/player-a-retest-side.mp4</code></p>
-      </div>
-      <div class="card">
-        <h3>Retest Back View Clip</h3>
-        <video controls width="100%" poster="assets/cases/player-a/player-a-retest-back-frame.jpg">
-          <source src="assets/cases/player-a/player-a-retest-back.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <p class="small">File name: <code>assets/cases/player-a/player-a-retest-back.mp4</code></p>
-      </div>
+      <p class="kicker">Development Process</p>
+      <h2>How to Read These Case Studies</h2>
+      <p>
+        Each case study begins with a baseline observation, then turns the video findings into a small set of
+        practical training priorities. The goal is not to overwhelm the player, but to focus on the changes that
+        can create better contact and more repeatable mechanics.
+      </p>
+      <p>
+        Future retests can compare the same video angles, contact quality score, and issue frequency to show whether
+        the player is improving over time.
+      </p>
     </div>
 
-    <div class="card" style="margin-top:24px;">
-      <h3>Optional Redacted Sample Report</h3>
-      <p>Add a redacted, anonymous PDF only if it is approved for public website use.</p>
-      <a class="btn btn-outline" href="assets/reports/player-a-sample-report-redacted.pdf">View Redacted Sample Report</a>
-      <p class="small">File name: <code>assets/reports/player-a-sample-report-redacted.pdf</code></p>
+    <div class="card">
+      <h3>What Each Report Includes</h3>
+      <ul class="checklist">
+        <li>Player profile and focus area</li>
+        <li>Initial swing observation</li>
+        <li>Video angles used</li>
+        <li>Contact quality score</li>
+        <li>Key mechanical findings</li>
+        <li>Vincent&rsquo;s recommendations</li>
+        <li>Training drills</li>
+        <li>Follow-up goal</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <footer class="footer">
   <div class="container">
-    <p><strong>Future Stars Baseball Club</strong> | Youth Baseball Development Through Video Analysis, Data Tracking & Training Drills</p>
-    <p class="small">Important privacy note: player photos, videos, and identifying information should only be published after confirming parent permission.</p>
+    <p>
+      <strong>Future Stars Baseball Club</strong> |
+      Youth Baseball Development Through Video Analysis, Data Tracking & Training Drills
+    </p>
+    <p class="small">
+      Important privacy note: player photos, videos, and identifying information should only be published after confirming parent permission.
+    </p>
   </div>
 </footer>
+
 </body>
 </html>
