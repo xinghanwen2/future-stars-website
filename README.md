@@ -1,77 +1,57 @@
-# Future Stars website redesign
+# Future Stars Baseball Club website
 
-A static, photo-led redesign for Vincent Hall’s student leadership and community baseball project. Built for the existing GitHub Pages site; no build tools or new hosting subscription required.
+Static HTML/CSS/JavaScript source for the existing GitHub Pages website at https://www.futurestarsbaseballclub.org/. No build step is required. Keep the `CNAME` and existing media/report files.
 
-## Install on your existing site
+## Admissions consistency revision — October 21, 2026
 
-1. Back up the current repository or create a branch.
-2. Unzip this package. Copy its CONTENTS into the root of `xinghanwen2/future-stars-website`. Do not put the enclosing folder inside the repository.
-3. Replace the matching HTML files and `style.css`. Add every included JavaScript file and merge the `assets` directory with the existing one.
-4. Preserve your existing `CNAME`, `.github`, and any other unrelated files. This package does not replace domain settings or the Render backend.
-5. Commit the changes. Once the GitHub Pages deployment succeeds, open your domain and refresh.
+The original state is preserved at commit `b510e03538cc95996096e523f55f0bdc11c37e1c` and branch `backup/pre-admissions-2026-10-21`. Proposed edits are on `revision/admissions-consistency-2026-10-21`. This revision does not merge into `main` or deploy the production website.
 
-The page filenames have no `(1)` or `(24)` suffixes. Existing URLs remain intact. New pages: `gallery.html` and `feedback.html`.
+- Home introduces the engineering project and links to the public Python/MediaPipe prototype.
+- About and Founder distinguish coaching since freshman year from the club's establishment in July 2025. Vincent's role is Founder & Head Coach; the coaching description covers more than ten youth players, clinics, and mentoring.
+- Method links real baseline observations to the original reports. It does not claim verified retest gains.
+- AI Analysis distinguishes the public Python prototype, local app v0.3.8 being prepared for limited testing, and the existing hosted online demo. The existing demo's controls and endpoint contracts remain available inside an explicitly experimental section.
+- Reports distinguish five youth profiles and Vincent's self-analysis from 18 PDF files and three dated baselines. Translations and presentation versions do not count as additional sessions.
+- Team retains existing names and photos, and adds Vincent's coaching role.
+- Contact and legacy email-draft code consistently use `vincent.hall2008@gmail.com`, already displayed on the original Contact page and footers. This revision does not perform mailbox delivery tests.
+- Photos, player names, video assets, report PDFs, and existing parent stories are retained.
+- Responsive changes address narrow-screen overflow. Missing font-file references were removed; the pre-existing system-font fallbacks remain in use.
 
-## What is included
+## Files and content
 
-- Twelve pages, mobile navigation, photo lightbox, local fonts, and supplied field/training photographs.
-- Six players and 18 original PDFs downloaded successfully from the current public website.
-- Search by player, filter reports by English/Chinese, and open each original PDF.
-- Per-player evaluation comparison: choose two sessions and see matching measurements and numeric changes.
-- Real baseline data for Austin, Justin, and Leo from August 12, 2026.
-- Parent comments display plus an email-draft form with optional anonymous-publication consent.
-- Existing AI endpoint integrations: chat, on-screen report, separate PDF generation, and video trimming.
+The twelve HTML pages share `style.css` and `site.js`. Edit player reports and dated session records in `content.js`; `reports.js` renders search, language filters, and compatible session comparisons. Keep report filenames case-sensitive.
 
-## Player reports and progress data
+A session needs an actual evaluation date, stable ID, source PDF, and matching metric keys/units. Translation, upload, and formatting dates are not evaluation dates. Add a retest only when its paired dated records are available.
 
-Edit `content.js`. It works even when you open `index.html` directly, without a local server.
+### Baseline source audit
 
-Each player contains `id`, `name`, `reports`, and `sessions`. Report links point to `assets/reports/` and must match case-sensitive filenames. For a new report, upload the PDF and add a report object using the same fields as an existing entry. Dates must describe the actual evaluation, not the upload date or PDF formatting date.
+Page 3 of each English four-video baseline report records ten toss swings on August 12, 2026:
 
-Baseline sources, all page 3 of the English four-video baseline PDF:
+| Player | Good | Medium | Poor | Points /30 | CQS /100 |
+| --- | --- | --- | --- | --- | --- |
+| Austin | 4 | 4 | 2 | 22 | 73.3 |
+| Justin | 4 | 5 | 1 | 23 | 76.7 |
+| Leo | 5 | 4 | 1 | 24 | 80.0 |
 
-| Player | Session | Contact points | CQS | Good | Medium | Poor |
-| --- | --- | --- | --- | --- | --- | --- |
-| Austin | 2026-08-12 | 22/30 | 73.3/100 | 4/10 | 4/10 | 2/10 |
-| Justin | 2026-08-12 | 23/30 | 76.7/100 | 4/10 | 5/10 | 1/10 |
-| Leo | 2026-08-12 | 24/30 | 80.0/100 | 5/10 | 4/10 | 1/10 |
-
-These are video-based coaching observations of ten toss swings, not sensor readings. No verified second dated evaluations were found in the reviewed reports. Other files are analysis, translations, or presentation versions, so the site does not treat them as retests.
-
-To add a follow-up, copy the player's existing session object and change its unique `id`, actual `date` (YYYY-MM-DD), `label`, `source` PDF path, and verified metric values. Keep metric keys and units consistent across sessions. The comparison UI activates automatically when that player has two dated sessions. It compares any two selected sessions, so it supports more than two evaluations over time. A positive numeric change is deliberately not labeled “improvement” because some measurements, such as poor contact, should decrease.
-
-Players without dated results show an empty state. No demo results or fabricated progress are included.
+Good = 3 points, Medium = 2, Poor = 1. CQS = points / 30 * 100. These are video-based observational coaching records, not sensor measurements or the app's separate six-category rubric. The current public session archive has no verified paired retest entries; that is not a statement that no retesting occurred elsewhere in the program.
 
 ## Parent feedback
 
-`feedback.html` prepares an email addressed to `futurestarsbaseballclub@gmail.com`. Parents must send it from their email app. There is a copy-text fallback. It does not automatically submit, save, or publish feedback and does not require a new backend.
+`feedback.html` uses the existing `parent-feedback.js`, `parent-feedback.css`, and public Supabase configuration in `feedback-config.js`. It displays the existing featured parent stories and community feedback. The current form publishes submitted feedback immediately under its existing consent wording; this revision preserves that behavior. Database permissions and policies are managed separately.
 
-After reviewing a real comment and receiving publication permission, add it to the `feedback` array in `content.js`:
+`feedback.js` is the legacy email-draft implementation and is not loaded by the current feedback page. Its fallback address is aligned with Contact. No feedback was submitted during revision testing.
 
-- `quote`: the exact approved comment (or approved edited wording).
-- `attribution`: the approved display name, such as “A Future Stars parent”.
-- `approved`: `true` to show it; `false` to hide it.
+## AI workflow
 
-Only entries with `approved: true` display. Do not put private submissions in this public file. The array is empty because no actual comments were provided. Optional publication consent is recorded in the email draft; unchecked means private feedback only.
+`ai.js` preserves the Render backend URL, routes, and multipart names for the existing online demo. Selected videos are transmitted to the hosted service for analysis/trimming. This is separate from the local app and the GitHub Python prototype.
 
-## Photos and fonts
+The PDF endpoint generates a separate review, so the PDF may differ from the displayed text. Chat questions are independent. Backend availability, live AI output quality, CORS, and the local app's capabilities were not verified by this website revision. No sample video was uploaded.
 
-Existing photo paths are preserved. New supplied images use `community-1.jpg` through `community-7.jpg`, `vincent-coaching.png`, and `vincent-field.png`. The gallery uses descriptive captions and does not guess player identities. CSS crops images for the layout; original supplied files are retained. Only publish photos and reports with the appropriate permission.
+## Validation of this revision
 
-Barlow Condensed, DM Sans, and a Noto Sans SC subset for Chinese labels are served from local font files; no Google Fonts request is needed when browsing the site. License notices are in `assets/fonts`.
+- Parsed all twelve HTML pages and checked local page, script, stylesheet, image, and PDF references against the checkout: no missing references.
+- Checked JavaScript syntax for the changed report/legacy feedback code and the retained AI integration.
+- Inspected all twelve pages in 320px, 390px, and 1440px iframe layouts in Chromium: no document-level horizontal overflow or broken loaded images after the narrow-screen fixes. Same-origin iframes test CSS layouts; they do not emulate an iPhone device or Safari.
+- Exercised the 390px mobile menu, player search, Chinese report filtering, Leo baseline display, and the expandable experimental demo. No production form submissions or live AI requests were made.
+- Re-read the three baseline source PDFs and verified the published category counts and CQS calculations.
 
-## AI limitations and compatibility
-
-The Render URLs and multipart field names are preserved. Chat still sends each question independently because no compatible history contract was supplied. The page states this explicitly. The PDF endpoint generates a separate review, so the PDF may differ from the displayed text. Buttons prevent duplicate analysis/PDF requests; errors use plain language. User chat text is rendered as text, not HTML.
-
-The static redesign cannot fix backend memory limits, model behavior, CORS settings, server billing, or API uptime. Live analysis calls are not needed to preview the design. The existing production origin remains the intended place to use the Render integrations.
-
-## Preview locally
-
-Open `index.html`, or run `python -m http.server 8000` inside this folder and visit `http://localhost:8000`. Registration still opens the existing Google Form. Email links open your configured mail app.
-
-## Verification performed
-
-All twelve pages were checked in Chromium at 1440px, 390px, and 320px widths, with no horizontal overflow or broken loaded images. Local page/asset references were checked. All eighteen report files were downloaded from the existing site and identified as PDFs. Search, English/Chinese filters, photo viewing, mobile navigation, baseline display, comparison calculations, and email-draft preparation were exercised. Comparison calculations were tested with temporary in-memory data that is not included in this package.
-
-AI chat/report/PDF interactions were verified using mocked API responses. No live video analysis was submitted, and live Render availability or output quality is not verified by these checks.
+To preview independently, serve this directory with a static web server. Review the branch before merging. Merging into the configured production branch may trigger GitHub Pages publication; do not merge until the owner authorizes deployment.
