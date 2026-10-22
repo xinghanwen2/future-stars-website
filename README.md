@@ -5,7 +5,7 @@ Static HTML/CSS/JavaScript for the existing GitHub Pages site: https://www.futur
 ## October 21, 2026: complete project evidence and application alignment
 
 - Home: free coaching, a prominent GitHub link and App entry, 12-player / 7-retest / 6-category project overview, and all seven paired totals.
-- Founder/About: Founder & Head Coach versus analytics Project Lead, freshman-year coaching versus later formal club organization, IRS nonprofit recognition, and concise engineering/research/athletics/mentoring background consistent with the latest supplied applications.
+- Founder/About: Founder & Head Coach versus analytics Project Lead, freshman-year coaching versus later formal club organization, IRS nonprofit recognition, and a brief engineering interest tied directly to coaching.
 - Player Reports: 12 youth profiles plus Vincent self-analysis, seven six-category baseline/retest pairs, source reports and dated videos. Earlier six-category baselines for six players were mapped retrospectively; Aaron already used the rubric at baseline.
 - CQS contact quality stays separate from mechanical /60 and normalized /100 scores. Normalized changes are derived from raw totals before rounding.
 - GitHub appears in navigation, the homepage hero, project sections, App, and the footer.
@@ -23,3 +23,7 @@ All 42 category pairs across seven players were checked against the original Eng
 ## Release safety
 
 Original pre-revision state is retained at backup/pre-admissions-2026-10-21 (b510e03538cc95996096e523f55f0bdc11c37e1c). The owner subsequently authorized production publication and iterative website feedback. Preserve main history and backup refs when publishing.
+
+## October 22, 2026: club-first editorial focus
+
+Removed the Founder page’s unrelated research, summer-program, tutoring, and creative-activity cards. Keep personal background brief and relevant to youth coaching. The homepage section is now “From Coaching to Coding,” linking to the existing technical overview and GitHub. Player reports, verified 12-player / 7-retest counts, technical limitations, app status, and visual design are preserved. Broader application activities must not become standalone website sections.

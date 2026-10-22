@@ -16,6 +16,6 @@ Android APK not found in connected Drive searches or GitHub releases. No downloa
 
 ## Application alignment
 
-Compared six supplied PDFs (the two October 12 portfolio copies are byte-identical). Use the October 21 saved Common App activities for current roles and v0.3.8 limited-test status; the October 19 master review documents IRS Letter 947 dated November 14, 2025, exemption effective August 14, 2025. Older v0.3.5 descriptions are superseded. The October 20 recruiting resume supports the October 16 manuscript resubmission. Research remains under review, not accepted/published.
+Compared six supplied PDFs (the two October 12 portfolio copies are byte-identical). Use the October 21 saved Common App activities for current roles and v0.3.8 limited-test status; the October 19 master review documents IRS Letter 947 dated November 14, 2025, exemption effective August 14, 2025. Older v0.3.5 descriptions are superseded.
 
-Club coaching and the separate analytics/software project are explicitly distinguished. Mars research, USC engineering, school/club baseball, and tutoring appear only as founder background. Application PDFs, grades, test scores, home address, family data, and private application records are not published.
+Club coaching and the separate analytics/software project are explicitly distinguished. Founder background is limited to baseball and a brief interest in mathematics and engineering. Unrelated research, summer programs, academic honors, tutoring, and other application activities are not standalone website content. Application PDFs, grades, test scores, home address, family data, and private application records are not published.
